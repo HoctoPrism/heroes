@@ -29,7 +29,7 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('genders', GenderController::class)->middleware(['auth']);
+Route::resource('genders', GenderController::class)->middleware(['auth', 'isadmin']);
 Route::resource('skills', SkillController::class)->middleware(['auth']);
 Route::resource('heroes', HeroController::class)->middleware(['auth']);
 Route::resource('races', RaceController::class)->middleware(['auth']);

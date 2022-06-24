@@ -9,6 +9,7 @@
 <body>
     <header class="d-flex justify-content-between align-items-center p-3 text-white bg-dark">
         <div>Projet Heroes</div>
+        <div id="errorR" class="fw-bold text-danger"></div>
         <div class="d-flex justify-content-between align-items-center">
             <div class="me-4">
                 <a href="{{ url('/heroes') }}" class="text-sm text-white text-decoration-none me-2">heroes</a>
@@ -36,5 +37,12 @@
          @yield('content')
     </div>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <script>
+        var msg = '{{Session::get('alert')}}';
+        var exist = '{{Session::has('alert')}}';
+        if(exist){
+            document.getElementById('errorR').append('Vous devez être administrateur pour accéder à la page')
+        }
+ </script>
 </body>
 </html>
