@@ -29,11 +29,11 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('genders', GenderController::class);
-Route::resource('skills', SkillController::class);
-Route::resource('heroes', HeroController::class);
-Route::resource('races', RaceController::class);
-Route::resource('universes', UniverseController::class);
+Route::resource('genders', GenderController::class)->middleware(['auth']);
+Route::resource('skills', SkillController::class)->middleware(['auth']);
+Route::resource('heroes', HeroController::class)->middleware(['auth']);
+Route::resource('races', RaceController::class)->middleware(['auth']);
+Route::resource('universes', UniverseController::class)->middleware(['auth']);
 
 Route::get('/contact', [ContactUsFormController::class, 'createForm']);
 Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm'])->name('contact.store');
