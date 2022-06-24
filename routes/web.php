@@ -29,11 +29,25 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::resource('genders', GenderController::class);
-Route::resource('skills', SkillController::class);
-Route::resource('heroes', HeroController::class);
-Route::resource('races', RaceController::class);
-Route::resource('universes', UniverseController::class);
+Route::get('/genders', function () {
+    return Route::resource('genders', GenderController::class);
+})->middleware(['auth'])->name('genders');
+
+Route::get('/skills', function () {
+    return Route::resource('skills', SkillController::class);
+})->middleware(['auth'])->name('skills');
+
+Route::get('/heroes', function () {
+    return Route::resource('heroes', HeroController::class);
+})->middleware(['auth'])->name('heroes');
+
+Route::get('/races', function () {
+    return Route::resource('races', RaceController::class);
+})->middleware(['auth'])->name('races');
+
+Route::get('/universes', function () {
+    return Route::resource('universes', UniverseController::class);
+})->middleware(['auth'])->name('universes');
 
 Route::get('/contact', [ContactUsFormController::class, 'createForm']);
 Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm'])->name('contact.store');
